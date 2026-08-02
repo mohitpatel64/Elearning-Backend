@@ -31,7 +31,7 @@ export let save = async (req, res) => {
        const user = await userSchemaModel.create(userDetail);
 
       //  verification link
-      const verifyLink = `http://localhost:3001/user/verify/${token}`
+      const verifyLink = `https://elearning-backend-vh3u.onrender.com/user/verify/${token}`
 
       sendMail(user.email,verifyLink);
 
