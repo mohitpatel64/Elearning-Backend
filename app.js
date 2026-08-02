@@ -10,6 +10,7 @@ dotenv.config({
     path:path.resolve("./.env")
 });
 
+import './models/conection.js'
 import express from 'express';
 import cors from 'cors';
 

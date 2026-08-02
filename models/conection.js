@@ -1,7 +1,7 @@
-import mongoose  from 'mongoose';
+import mongoose from "mongoose";
 
-const url = "mongodb://localhost:27017/elearning";
+const url = process.env.MONGO_URL;
 
-mongoose.connect(url);
-
-console.log("data base connected successfully");
+mongoose.connect(url)
+  .then(() => console.log("Database connected successfully"))
+  .catch((err) => console.log(err));
