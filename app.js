@@ -35,5 +35,8 @@ app.use("/user",userRouter);
 app.use("/course",courseRouter);
 app.use("/enrollment",enrollmentRouter);
 
-app.listen(3001);
-console.log('Server is running on port 3001');
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
