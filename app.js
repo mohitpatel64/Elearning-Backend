@@ -10,7 +10,6 @@ dotenv.config({
     path:path.resolve("./.env")
 });
 
-console.log("APP:", process.env.MONGO_URL);
 import { connectDB } from "./models/conection.js";
 await connectDB();
 
