@@ -25,6 +25,7 @@ app.use(cors());
 import userRouter from "./router/user.router.js";
 import courseRouter from './router/course.router.js';
 import enrollmentRouter from './router/enrollment.router.js';
+import contactRouter from './router/contact.router.js';
 
 
 
@@ -37,7 +38,7 @@ app.use("/assets/uploads", express.static("assets/uploads"));
 app.use("/user",userRouter);
 app.use("/course",courseRouter);
 app.use("/enrollment",enrollmentRouter);
-
+app.use("/contact",contactRouter)
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
