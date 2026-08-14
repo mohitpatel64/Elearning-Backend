@@ -224,3 +224,36 @@ export let deleteUser = async(req,res)=>{
    }
 }
 
+
+
+
+
+
+// ------------------------------------------------------
+// Admin Dashboard Stats
+// ------------------------------------------------------
+
+export const adminStats = async (req, res) => {
+   try {
+
+      const totalUsers = await userSchemaModel.countDocuments();
+
+      const activeStudents = await userSchemaModel.countDocuments({
+         role: "student",
+         status: 1
+      });
+
+      res.status(200).json({
+         totalUsers,
+         activeStudents
+      });
+
+   }
+   catch(err) {
+      console.log(err);
+
+      res.status(500).json({
+         message: "Admin stats failed"
+      });
+   }
+};

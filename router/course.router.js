@@ -15,6 +15,7 @@ router.patch("/update/:id", upload.single("thumbnail"),courseController.updateCo
 router.delete("/delete/:id",courseController.deleteCourse);
 router.post("/comments",courseController.coursecomments);
 router.get("/getcomments",courseController.getcoursecomments);
+router.get("/total-courses", courseController.totalCourses);
 
 
 router.post("/add-module", courseController.addModule);
@@ -31,6 +32,5 @@ router.post("/delete-video", courseController.deleteVideo);
 router.post("/delete-module", courseController.deleteModule);
 router.post("/update-module", courseController.updateModule);
 router.post("/update-video",upload.single("video"),courseController.updateVideo);
-
 export default router;
 

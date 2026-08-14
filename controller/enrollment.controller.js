@@ -230,3 +230,75 @@ const completionRate =
     }
 
 };
+
+
+
+
+// ------------------------------------------------------
+// Admin Dashboard - Total Enrollments
+// ------------------------------------------------------
+
+export const totalEnrollments = async (req, res) => {
+    try {
+
+        const totalEnrollments = await EnrollmentModel.countDocuments({
+            paymentStatus: "success"
+        });
+
+        res.status(200).json({
+            totalEnrollments
+        });
+
+    } catch (err) {
+
+        console.log(err);
+
+        res.status(500).json({
+            message: "Failed to get total enrollments"
+        });
+
+    }
+};
+
+
+
+// ------------------------------------------------------
+// Admin Dashboard - Total Revenue
+// ------------------------------------------------------
+
+export const totalRevenue = async (req, res) => {
+    try {
+
+        const result = await EnrollmentModel.aggregate([
+            {
+                $match: {
+                    paymentStatus: "success"
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    totalRevenue: {
+                        $sum: "$amount"
+                    }
+                }
+            }
+        ]);
+
+        const totalRevenue =
+            result.length > 0 ? result[0].totalRevenue : 0;
+
+        res.status(200).json({
+            totalRevenue
+        });
+
+    } catch (err) {
+
+        console.log(err);
+
+        res.status(500).json({
+            message: "Failed to get total revenue"
+        });
+
+    }
+};

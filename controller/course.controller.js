@@ -409,7 +409,31 @@ export const updateVideo = async (req, res) => {
         res.status(500).json({
             message: "Update Failed"
         });
+    }
+};
+
+
+
+// ------------------------------------------------------
+// Admin Dashboard - Total Courses
+// ------------------------------------------------------
+
+export const totalCourses = async (req, res) => {
+    try {
+
+        const totalCourses = await courseSchemaModel.countDocuments();
+
+        res.status(200).json({
+            totalCourses
+        });
+
+    } catch (err) {
+
+        console.log(err);
+
+        res.status(500).json({
+            message: "Failed to get total courses"
+        });
 
     }
-
 };
